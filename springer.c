@@ -1,15 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-
 int main() {
     clock_t begin = clock();
     srandom(time(NULL));
-    // int x = random() % 8;
-    // int y = random() % 8;
     int r = random() % 8;
-    int x = 0;
-    int y = 0;
+    int x;
+    int y;
+    int ex;
+    int ey;
     int count = 0;
     int counttemp = 0;
     int cx[64];
@@ -28,18 +27,51 @@ int main() {
     int size;
     printf("Größe eingeben (5-8): ");
     scanf("%d",&size);
+    if (size < 5)
+    {
+        printf("Zu klein.\n");
+        main();
+    }
+    if (size > 8)
+    {
+        printf("Zu groß.\n");
+        main();
+    }
     printf("X eingaben (1-%d): ",size);
-    scanf("%d",&x+1);
+    scanf("%d",&ex);
+    if (ex < 1)
+    {
+        printf("Zu klein.\n");
+        main();
+    }
+    if (ex > size)
+    {
+        printf("Zu groß.\n");
+        main();
+    }
     printf("Y eingeben (1-%d): ",size);
-    scanf("%d",&y+1);
+    scanf("%d",&ey);
+    if (ey < 1)
+    {
+        printf("Zu klein.\n");
+        main();
+    }
+    if (ey > size)
+    {
+        printf("Zu groß.\n");
+        main();
+    }
+    x = ex - 1;
+    y = ey - 1;
     int siz = size - 1;
     int size1 = siz + 1;
     int end = size1 * size1 - 1;
     int sx = x;
     int sy = y;
-    // printf("end = %d\n",end);
-    // int xMove[8] = {  2, 1, -1, -2, -2, -1,  1,  2 }; 
-    // int yMove[8] = {  1, 2,  2,  1, -1, -2, -2, -1 }; 
+    printf("%d",x);
+    printf("%d",y);
+    printf("%d",sx);
+    printf("%d",sy);
     for (size_t j = 0; j < 64; j++)
     {
         cx[j] = -1;
@@ -47,8 +79,6 @@ int main() {
     }
     cx[0] = x;
     cy[0] = y;
-    // printf("x = %d\ny = %d\ncount = %d\ncx = %d\ncy =  %d ",x,y,count,cx[count],cy[count]);
-    
     int solve()
     {
         while (count < end)
@@ -65,7 +95,6 @@ int main() {
                 t7 = 0;
                 counttemp = count;
             }
-            
             if (t0 == 1 && t1 == 1 && t2 == 1 && t3 == 1 && t4 == 1 && t5 == 1 & t6 == 1 && t7 ==1)
             {
                 x = sx;
@@ -90,9 +119,7 @@ int main() {
                     }
                 cx[0] = x;
                 cy[0] = y;
-                // printf("x = %d\ny = %d\ncount = %d\ncx = %d\ncy =  %d ",x,y,count,cx[count],cy[count]);
             }
-
             r = random() % 8;
             w = 0;
             switch (r)
@@ -113,18 +140,13 @@ int main() {
                         count++;
                         cx[count] = x;
                         cy[count] = y;
-                        // printf("\n---------\n");
-                        // printf("x = %d\ny = %d\ncount = %d\ncx = %d\ncy =  %d ",x,y,count,cx[count],cy[count]); 
-                        // printf("\n---------\n");
                         break;
                     }
                     else
                     {
                         t0 = 1;
                     }
-                    
                     break;
-                    
                 case 1:
                     w = 0;
                     for (i = 0; i <= end; i++)
@@ -141,18 +163,13 @@ int main() {
                         count++;
                         cx[count] = x;
                         cy[count] = y;
-                        // printf("\n---------\n");
-                        // printf("x = %d\ny = %d\ncount = %d\ncx = %d\ncy =  %d ",x,y,count,cx[count],cy[count]); 
-                        // printf("\n---------\n");
                         break;
                     }
                     else
                     {
                         t1 = 1;
                     }
-                    
                     break;
-                
                 case 2:
                     w = 0;
                     for (i = 0; i <= end; i++)
@@ -169,18 +186,13 @@ int main() {
                         count++;
                         cx[count] = x;
                         cy[count] = y;
-                        // printf("\n---------\n");
-                        // printf("x = %d\ny = %d\ncount = %d\ncx = %d\ncy =  %d ",x,y,count,cx[count],cy[count]); 
-                        // printf("\n---------\n");
                         break;
                     }
                     else
                     {
                         t2 = 1;
                     }
-                    
                     break;
-
                 case 3:
                     w = 0;
                     for (i = 0; i <= end; i++)
@@ -197,18 +209,13 @@ int main() {
                         count++;
                         cx[count] = x;
                         cy[count] = y;
-                        // printf("\n---------\n");
-                        // printf("x = %d\ny = %d\ncount = %d\ncx = %d\ncy =  %d ",x,y,count,cx[count],cy[count]); 
-                        // printf("\n---------\n");
                         break;
                     }
                     else
                     {
                         t3 = 1;
                     }
-                    
                     break;
-       
                 case 4:
                     w = 0;
                     for (i = 0; i <= end; i++)
@@ -225,18 +232,13 @@ int main() {
                         count++;
                         cx[count] = x;
                         cy[count] = y;
-                        // printf("\n---------\n");
-                        // printf("x = %d\ny = %d\ncount = %d\ncx = %d\ncy =  %d ",x,y,count,cx[count],cy[count]); 
-                        // printf("\n---------\n");
                         break;
                     }
                     else
                     {
                         t4 = 1;
                     }
-                    
                     break;
-
                 case 5:
                     w = 0;
                     for (i = 0; i <= end; i++)
@@ -253,18 +255,13 @@ int main() {
                         count++;
                         cx[count] = x;
                         cy[count] = y;
-                        // printf("\n---------\n");
-                        // printf("x = %d\ny = %d\ncount = %d\ncx = %d\ncy =  %d ",x,y,count,cx[count],cy[count]); 
-                        // printf("\n---------\n");
                         break;   
                     }
                     else
                     {
                         t5 = 1;
                     }
-                    
                     break;
-
                 case 6:
                     w = 0;
                     for (i = 0; i <= end; i++)
@@ -281,18 +278,13 @@ int main() {
                         count++;
                         cx[count] = x;
                         cy[count] = y;
-                        // printf("\n---------\n");
-                        // printf("x = %d\ny = %d\ncount = %d\ncx = %d\ncy =  %d ",x,y,count,cx[count],cy[count]); 
-                        // printf("\n---------\n");
                         break;
                     }
                     else
                     {
                         t6 = 1;
                     }
-                    
                     break;
-
                 case 7:
                     w = 0;
                     for (i = 0; i <= end; i++)
@@ -310,16 +302,12 @@ int main() {
                         cx[count] = x;
                         cy[count] = y;
                         t7 = 1;
-                        // printf("\n---------\n");
-                        // printf("x = %d\ny = %d\ncount = %d\ncx = %d\ncy =  %d ",x,y,count,cx[count],cy[count]); 
-                        // printf("\n---------\n");
                         break;
                     }
                     else
                     {
                         t7 = 1;
                     }
-                    
                     break;
             }
         }
