@@ -1,18 +1,17 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <sys/types.h>
+#include <signal.h>
 int main() {
     clock_t begin = clock();
-    srandom(time(NULL));
-    int r = random() % 8;
     int x;
     int y;
     int ex;
     int ey;
+    int r;
     int count = 0;
     int counttemp = 0;
-    int cx[64];
-    int cy[64];
     int i = 0;
     int j = 0;
     int t0 = 0;
@@ -25,14 +24,16 @@ int main() {
     int t7 = 0;
     int w = 0;
     int size;
-    printf("Größe eingeben (5-8): ");
+    int fork();
+    int getpid();
+    printf("Größe eingeben (5-9): ");
     scanf("%d",&size);
     if (size < 5)
     {
         printf("Zu klein.\n");
         main();
     }
-    if (size > 8)
+    if (size > 9)
     {
         printf("Zu groß.\n");
         main();
@@ -65,22 +66,23 @@ int main() {
     y = ey - 1;
     int siz = size - 1;
     int size1 = siz + 1;
-    int end = size1 * size1 - 1;
+    int arrsize = size1 * size1;
+    int end = arrsize - 1;
     int sx = x;
     int sy = y;
-    printf("%d",x);
-    printf("%d",y);
-    printf("%d",sx);
-    printf("%d",sy);
-    for (size_t j = 0; j < 64; j++)
+    int cx[arrsize];
+    int cy[arrsize];
+    int board[size][size];
+    for (size_t j = 0; j <= end; j++)
     {
         cx[j] = -1;
         cy[j] = -1;
     }
     cx[0] = x;
     cy[0] = y;
-    int solve()
+    void solve()
     {
+        srandom(time(NULL) ^ (getpid()<<16));
         while (count < end)
         {
             if (count != counttemp)
@@ -107,12 +109,11 @@ int main() {
                 t5 = 0;
                 t6 = 0;
                 t7 = 0;
-                w = 0;
                 count = 0;
                 counttemp = 0;
                 i = 0;
                 j = 0;
-                for (size_t j = 0; j < end; j++)
+                for (size_t j = 0; j <= end; j++)
                     {
                         cx[j] = -1;
                         cy[j] = -1;
@@ -311,18 +312,39 @@ int main() {
                     break;
             }
         }
+        // for (i = 0; i <= end; i++)
+        // {   
+        //     printf("sprung %d\n",i+1);
+        //     printf("x = %d\n",cx[i]+1);
+        //     printf("y = %d\n",cy[i]+1);
+        //     printf("--------\n");
+        // }
         for (i = 0; i <= end; i++)
-        {   
-            printf("sprung %d\n",i+1);
-            printf("x = %d\n",cx[i]+1);
-            printf("y = %d\n",cy[i]+1);
-            printf("--------\n");
+        {
+            board[cy[i]][cx[i]] = i+1;
         }
+        printf("----------------------\n");
+        for (i = 0; i < size; i++)
+        {
+            for (j = 0; j < size; j++)
+            {
+                printf("%d,", board[i][j]);
+            }
+            printf("\n");
+        }
+        printf("----------------------\n");
         printf("YEAH BOIIIIIIIIIIIIIIIIIIIIIIIIIII!!\n\n");
         clock_t end = clock();
         double time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
         printf("Rechenzeit = %f\n", time_spent);
+        kill(0, SIGTERM);
         exit(1);
     }
+    fork();
+    fork();
+    fork();
+    fork();
+    fork();
+    fork();
     solve();
 }
