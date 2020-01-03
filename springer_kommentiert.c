@@ -5,8 +5,8 @@
 int main()
 {
   clock_t begin = clock();
-  int x;  // xcoordinate
-  int y;  // ycoordinate
+  int x;  // x coordinate
+  int y;  // y coordinate
   int inputX; //input for x
   int inputY; //input for y
   int randomNumber; //random number ganerated for each process
