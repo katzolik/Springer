@@ -522,10 +522,10 @@ int main()
     }
     for (i = 0; i <= end; i++)
     {
-        printf("sprung %d\n",i+1);
-        printf("x = %d\n",cx[i]+1);
-        printf("y = %d\n",cy[i]+1);
-        printf("--------\n");
+      printf("sprung %d\n", i + 1);
+      printf("x = %d\n", cx[i] + 1);
+      printf("y = %d\n", cy[i] + 1);
+      printf("--------\n");
     }
     for (i = 0; i <= end; i++)
     {
