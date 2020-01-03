@@ -345,14 +345,15 @@ int main()
     }
     printf("----------------------\n");
     // printf("YEAH BOIIIIIIIIIIIIIIIIIIIIIIIIIII!!\n\n");
-    //time spent to calculate
-    clock_t end = clock(); 
-    double time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
-    printf("Rechenzeit = %f\n", time_spent);
+    //time spent to calculate (inaccurate)
+    // clock_t end = clock(); 
+    // double time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
+    // printf("Rechenzeit = %f\n", time_spent);
     kill(0, SIGTERM);
     exit(1);
   }
   //generating processes
+  fork();
   fork();
   fork();
   fork();
