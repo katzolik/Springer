@@ -359,7 +359,6 @@ int main()
   fork();
   fork();
   fork();
-  fork();
   //calling function to solve problem
   solve();
 }
